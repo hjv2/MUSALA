@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="REST" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HAVAPP001;Initial Catalog=REST;User ID=sa" SettingsObjectName="REST.Properties.Settings" SettingsPropertyName="RESTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Gateway" Member="Gateways">
+    <Type Name="Gateway">
+      <Column Name="idGateway" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="uniqueSerialNum" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="humanReadable" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IPv4" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Gateway_PeriphericalDevice" Member="PeriphericalDevices" ThisKey="idGateway" OtherKey="idGateway" Type="PeriphericalDevice" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PeriphericalDevice" Member="PeriphericalDevices">
+    <Type Name="PeriphericalDevice">
+      <Column Name="idPD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vendor" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="dateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idGateway" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Gateway_PeriphericalDevice" Member="Gateway" ThisKey="idGateway" OtherKey="idGateway" Type="Gateway" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
